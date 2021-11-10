@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Liste d'animé</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+  <body>
+    <header class="flex-box--x">
+      <h1>🥥 Ma liste d'<span class="color-secondary">animés</span></h1>
+      <span id="animes-size"><%= animes.length %> animés</span>
+    </header>
+
+    <main>
+      <section id="animes-list" class="flex-box--y">
+        <% if(animes.length) { for(let i = 0, l = animes.length; i < l; i++) { %>
+
+        <article class="anime flex-box--x">
+          <% const anime = animes[i] %>
+          <img class="anime-img" src="images/<%= anime.image %>" alt="Une image" />
+          <div class="anime-infos flex-box--y">
+            <span class="anime-ref flex-box--x">
+              <h3 class="anime-title"><%= anime.name %></h3>
+
+              <% if(anime.pending) { %>
+              <span class="anime-length flex-box--x"><span>En cours</span></span>
+              <% } else if(anime.episodes) { %>
+              <span class="anime-length flex-box--x">
+                <span><%= anime.episodes %> eps</span>
+                <% if(anime.seasons) { %><span class="anime-seasons">/ <%= anime.seasons %> saisons</span><% } %>
+              </span>
+              <% } %>
+            </span>
+
+            <% if(anime.tags && anime.tags.length) { %>
+            <div class="anime-tags flex-box--x">
+              <% for(let i = 0, l = anime.tags.length; i < l; i++) { %>
+              <span class="anime-tag--<%= anime.tags[i] %>"><%= anime.tags[i] %></span>
+              <% } %>
+            </div>
+            <% } %>
+          </div>
+
+          <% if(typeof anime.rating == 'number') { %>
+          <div class="anime-note"><span class="anime-rating"><%= anime.rating %> / 5</span></div>
+          <% } %>
+        </article>
+
+        <% }} else { %>
+        <div></div>
+        <% } %>
+      </section>
+    </main>
+
+    <footer>
+      <a target="_blank" href="https://discord.gg/cMgGaDpuay">Vers mon serveur Discord</a>
+    </footer>
+  </body>
+</html>
