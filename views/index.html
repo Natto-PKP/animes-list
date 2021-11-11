@@ -9,6 +9,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/anime-box.css" />
   </head>
   <body>
     <header class="flex-box--x">
@@ -17,41 +18,62 @@
     </header>
 
     <main>
-      <section id="animes-list" class="flex-box--y">
-        <% if(animes.length) { for(let i = 0, l = animes.length; i < l; i++) { %>
+      <section>
+        <% if(animes.length) { %>
 
-        <article class="anime flex-box--x">
-          <% const anime = animes[i] %>
-          <img class="anime-img" src="images/<%= anime.image %>" alt="Une image" />
-          <div class="anime-infos flex-box--y">
-            <span class="anime-ref flex-box--x">
-              <h3 class="anime-title"><%= anime.name %></h3>
+        <ol id="animes-list">
+          <% for(let i = 0, l = animes.length; i < l; i++) { %>
+          <li>
+            <!-- Vignette d'un animé -->
+            <article class="anime-box flex-box--x">
+              <% const anime = animes[i] %>
 
-              <% if(anime.pending) { %>
-              <span class="anime-length flex-box--x"><span>En cours</span></span>
-              <% } else if(anime.episodes) { %>
-              <span class="anime-length flex-box--x">
-                <span><%= anime.episodes %> eps</span>
-                <% if(anime.seasons) { %><span class="anime-seasons">/ <%= anime.seasons %> saisons</span><% } %>
-              </span>
-              <% } %>
-            </span>
+              <!-- Image de l'animé -->
+              <img class="anime-box-img" src="images/<%= anime.image %>" alt="Une image" />
 
-            <% if(anime.tags && anime.tags.length) { %>
-            <div class="anime-tags flex-box--x">
-              <% for(let i = 0, l = anime.tags.length; i < l; i++) { %>
-              <span class="anime-tag--<%= anime.tags[i] %>"><%= anime.tags[i] %></span>
-              <% } %>
-            </div>
-            <% } %>
-          </div>
+              <!-- Informations -->
+              <div class="anime-box-infos flex-box--x">
+                <!-- Titre, tags et situation  -->
+                <div class="anime-box-info-primary flex-box--y">
+                  <!-- Titre et situation -->
+                  <div class="anime-box-ref flex-box--x">
+                    <h3 class="anime-box-title"><%= anime.name %></h3>
 
-          <% if(typeof anime.rating == 'number') { %>
-          <div class="anime-note"><span class="anime-rating"><%= anime.rating %> / 5</span></div>
+                    <% if(anime.pending) { %>
+                    <!-- En cours -->
+                    <span class="anime-box-statut">en cours</span>
+                    <% } else if(anime.episodes) { %>
+                    <!-- Épisodes et saisons -->
+                    <span class="anime-box-statut flex-box--x">
+                      <span><%= anime.episodes %> eps</span>
+                      <% if(anime.seasons) { %><span class="anime-seasons">/ <%= anime.seasons %> saisons</span><% } %>
+                    </span>
+                    <% } %>
+                  </div>
+
+                  <% if(anime.tags && anime.tags.length) { %>
+                  <!-- tags -->
+                  <div class="anime-box-tags flex-box--x">
+                    <% for(let i = 0, l = anime.tags.length; i < l; i++) { %>
+                    <span class="anime-box-tag--<%= anime.tags[i].replace(/\s+/g, '-') %>"><%= anime.tags[i] %></span>
+                    <% } %>
+                  </div>
+                  <% } %>
+                </div>
+
+                <% if(typeof anime.rating == 'number') { %>
+                <!-- Note de l'animé (par moi) -->
+                <div class="anime-box-note flex-box--x">
+                  <span class="anime-box-note-rating flex-box--x"><%= anime.rating %> / 5</span>
+                </div>
+                <% } %>
+              </div>
+            </article>
+          </li>
           <% } %>
-        </article>
+        </ol>
 
-        <% }} else { %>
+        <% } else { %>
         <div></div>
         <% } %>
       </section>

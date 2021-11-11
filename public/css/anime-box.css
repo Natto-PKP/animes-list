@@ -1,0 +1,151 @@
+/* Vignette d'un animé */
+.anime-box {
+  height: 3.6rem;
+  margin: 6px 0;
+  background-color: var(--color-primary);
+  box-shadow: -1px 1px 2px 1px rgba(0, 0, 0, 0.76);
+
+  transition: 0.1s ease-out;
+}
+
+.anime-box:hover {
+  transform: scale(1.1);
+}
+
+/* Image de l'animé */
+.anime-box-img {
+  border-right: var(--color-tertiary) solid 2px;
+}
+
+/* Boite d'information à droite de l'image */
+.anime-box-infos {
+  position: relative;
+  width: 100%;
+  justify-content: space-between;
+  padding: 0.1rem 1%;
+  white-space: nowrap;
+}
+
+/* Boite d'information principale (contient: titre, tags, situation) */
+.anime-box-info-primary {
+  justify-content: space-around;
+}
+
+/* Boite de note */
+.anime-box-note {
+  justify-content: center;
+}
+
+/* Boite de titre et de situation */
+.anime-box-ref {
+  max-width: 40rem;
+  align-items: center;
+}
+
+/* Caractère invisible permettant de garder la box des tags bien en place même si le titre est en position absolute */
+.anime-box-ref::before {
+  padding: 0.2rem 0;
+  content: '|';
+  color: transparent;
+  font-size: 1.2rem;
+}
+
+/* Nom de l'animé */
+.anime-box-title {
+  padding: 0.2rem 0.4rem;
+  text-transform: capitalize;
+  font-size: 1.2rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  transition: color 0.2s ease-out;
+}
+
+.anime-box-title::before {
+  content: '# ';
+  color: var(--color-tertiary-alpha);
+  font-size: 1.2rem;
+
+  transition: color 0.2s ease-out;
+}
+
+.anime-box-title:hover,
+.anime-box-title:hover::before {
+  position: absolute;
+
+  transition: color 0.2s ease-out;
+}
+
+.anime-box-title:hover {
+  padding-left: 25px;
+  overflow: visible;
+  background-color: var(--color-tertiary);
+  color: var(--color-primary);
+}
+
+.anime-box-title:hover::before {
+  left: 10px;
+  color: var(--color-secondary);
+}
+
+/* Statut de l'animé */
+.anime-box-statut {
+  padding: 0.2rem 0.2rem 0.1rem;
+  background-color: var(--color-secondary);
+  border-radius: 4px;
+  align-items: center;
+  font-size: 0.8rem;
+}
+
+.anime-seasons {
+  margin-left: 0.2rem;
+  font-size: 0.8rem;
+}
+
+/* Tags */
+.anime-box-tags span {
+  margin: 0 0.1rem;
+  padding: 0.15rem 0.3rem 0.05rem;
+  background-color: var(--color-secondary);
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+span.anime-box-tag--drame,
+span.anime-box-tag--romance {
+  background-color: var(--color-red);
+}
+
+span.anime-box-tag--harem,
+span.anime-box-tag--ecchi {
+  background-color: var(--color-pink);
+}
+
+span.anime-box-tag--action,
+span.anime-box-tag--isekai,
+span.anime-box-tag--slice-of-life {
+  background-color: var(--color-grey);
+}
+
+span.anime-box-tag--SF,
+span.anime-box-tag--fantasy {
+  background-color: var(--color-green);
+}
+
+span.anime-box-tag--politique,
+span.anime-box-tag--comique {
+  background-color: var(--color-yellow);
+}
+
+/* Ratting */
+.anime-box-note {
+  align-items: center;
+}
+
+.anime-box-note-rating {
+  padding-left: 6px;
+  border-left: var(--color-secondary) 2px solid;
+  font-size: 1.2rem;
+}
