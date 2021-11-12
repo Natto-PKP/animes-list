@@ -1,0 +1,24 @@
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0.8rem 0;
+  background-color: var(--color-tertiary);
+
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+header > h1 {
+  font-size: 1.5rem;
+}
+
+header > span {
+  margin-left: 0.4rem;
+  padding: 0.3rem 0.3rem 0.15rem;
+  background-color: var(--color-secondary);
+  border-radius: 4px;
+  color: var(--color-tertiary);
+}

@@ -8,43 +8,45 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="css/footer.css" />
     <link rel="stylesheet" href="css/index.css" />
-    <link rel="stylesheet" href="css/anime-box.css" />
   </head>
   <body>
-    <header class="flex-box--x">
-      <h1>🥥 Ma liste d'<span class="color-secondary">animés</span></h1>
-      <span id="animes-size"><%= animes.length %> animés</span>
+    <header>
+      <h1>🥥 Ma liste d'<span class="font--color-secondary">animés</span></h1>
+      <span><%= animes.length %></span>
     </header>
 
     <main>
       <section>
         <% if(animes.length) { %>
 
-        <ol id="animes-list">
+        <ol id="animes">
           <% for(let i = 0, l = animes.length; i < l; i++) { %>
           <li>
             <!-- Vignette d'un animé -->
-            <article class="anime-box flex-box--x">
+            <article class="anime-box">
               <% const anime = animes[i] %>
 
               <!-- Image de l'animé -->
-              <img class="anime-box-img" src="images/<%= anime.image %>" alt="Une image" />
+              <img class="anime-box__img" src="images/<%= anime.image %>" alt="Une image" />
 
               <!-- Informations -->
-              <div class="anime-box-infos flex-box--x">
+              <div class="anime-box__infos">
                 <!-- Titre, tags et situation  -->
-                <div class="anime-box-info-primary flex-box--y">
+                <div class="anime-box__infos__primary">
                   <!-- Titre et situation -->
-                  <div class="anime-box-ref flex-box--x">
-                    <h3 class="anime-box-title"><%= anime.name %></h3>
+                  <div class="anime-box__infos__primary__ref">
+                    <h3 class="anime-box__infos__primary__ref__title"><%= anime.name %></h3>
 
                     <% if(anime.pending) { %>
                     <!-- En cours -->
-                    <span class="anime-box-statut">en cours</span>
+                    <span class="anime-box__infos__primary__ref__statut">en cours</span>
                     <% } else if(anime.episodes) { %>
                     <!-- Épisodes et saisons -->
-                    <span class="anime-box-statut flex-box--x">
+                    <span class="anime-box__infos__primary__ref__statut">
                       <span><%= anime.episodes %> eps</span>
                       <% if(anime.seasons) { %><span class="anime-seasons">/ <%= anime.seasons %> saisons</span><% } %>
                     </span>
@@ -53,7 +55,7 @@
 
                   <% if(anime.tags && anime.tags.length) { %>
                   <!-- tags -->
-                  <div class="anime-box-tags flex-box--x">
+                  <div class="anime-box-tags">
                     <% for(let i = 0, l = anime.tags.length; i < l; i++) { %>
                     <span class="anime-box-tag--<%= anime.tags[i].replace(/\s+/g, '-') %>"><%= anime.tags[i] %></span>
                     <% } %>
@@ -63,8 +65,8 @@
 
                 <% if(typeof anime.rating == 'number') { %>
                 <!-- Note de l'animé (par moi) -->
-                <div class="anime-box-note flex-box--x">
-                  <span class="anime-box-note-rating flex-box--x"><%= anime.rating %> / 5</span>
+                <div class="anime-box-note">
+                  <span class="anime-box-note-rating"><%= anime.rating %> / 5</span>
                 </div>
                 <% } %>
               </div>

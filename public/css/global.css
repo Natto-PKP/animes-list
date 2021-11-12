@@ -1,0 +1,28 @@
+html {
+  --color-primary: whitesmoke;
+  --color-secondary: #c6aed2;
+  --color-tertiary: #2e2e2e;
+  --color-tertiary-alpha: rgba(46, 46, 46, 0.2);
+  --color-green: #5cbc74;
+  --color-red: #f4807f;
+  --color-pink: #f783b7;
+  --color-yellow: #f9e26d;
+  --color-grey: #d1d1d1;
+  --color-blue: #99cefc;
+  --color-orange: #f7ba80;
+}
+
+html,
+button,
+table {
+  font-family: sans-serif;
+  font-size: 0.8rem;
+}
+
+section {
+  margin: 1rem 0.5rem;
+}
+
+.font--color-secondary {
+  color: var(--color-secondary);
+}

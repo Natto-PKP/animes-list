@@ -1,88 +1,49 @@
-html {
-  font-family: sans-serif;
+/* --- ANIME-BOX --- */
+.anime-box {
+  height: 3.6rem;
 
-  --color-primary: whitesmoke;
-  --color-secondary: #c6aed2;
-  --color-tertiary: #2e2e2e;
-  --color-tertiary-alpha: rgba(46, 46, 46, 0.2);
-  --color-green: #5cbc74;
-  --color-red: #f4807f;
-  --color-pink: #f783b7;
-  --color-yellow: #f9e26d;
-  --color-grey: #d1d1d1;
-  --color-blue: #99cefc;
-  --color-orange: #f7ba80;
-}
-
-body {
-  min-width: 52rem;
+  display: flex;
+  margin: 6px 0;
   background-color: var(--color-primary);
-  /* border-radius: 8px; */
+  box-shadow: -1px 1px 3px 1px rgba(0, 0, 0, 0.75);
+
+  transition: 0.1s ease-out;
 }
 
-.color-secondary {
-  color: var(--color-secondary);
+/* .anime-box:hover {
+  transform: scale(1.1);
+} FOR PC */
+
+.anime-box__img {
+  border-right: var(--color-tertiary) solid 2px;
 }
 
-.flex-box--y {
+/* Boite d'information de boite */
+.anime-box__infos {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0.5rem 0.25rem;
+}
+
+.anime-box__infos__primary {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
-.flex-box--center {
-  justify-content: center;
-}
-
-.flex-box--x {
+.anime-box__infos__primary__ref {
   display: flex;
 }
 
-/* HEADER */
-header {
-  justify-content: center;
-  align-items: center;
-  column-gap: 20px;
-
-  margin-bottom: 2.5rem;
-  padding: 2rem 0 1rem;
-  background-color: var(--color-tertiary);
-  /* border-radius: 8px 8px 0 0; */
-  text-transform: uppercase;
-  font-weight: bold;
+.anime-box__infos__primary__ref__title {
+  flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-header h1 {
-  color: var(--color-primary);
-  font-size: 2rem;
-}
-
-header #animes-size {
-  padding: 0.4rem;
-  background-color: var(--color-secondary);
-  border-radius: 4px;
-  font-size: 0.7rem;
-}
-
-/* MAIN */
-#animes-list {
-  max-width: 50rem;
-  margin: auto;
-}
-
-/* FOOTER */
-footer > a {
-  display: block;
-  margin-top: 2.5rem;
-  padding: 1rem 0;
-  background-color: var(--color-tertiary);
-  /* border-radius: 0 0 8px 8px; */
-  text-align: center;
-  text-decoration: none;
-  color: var(--color-primary);
-
-  transition: 0.5s ease-out;
-}
-
-footer > a:hover {
-  color: var(--color-secondary);
+.anime-box__infos__primary__ref__statut {
 }
