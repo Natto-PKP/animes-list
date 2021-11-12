@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Rubik';
+  src: url('../fonts/Rubik-VariableFont_wght.ttf'), url('../fonts/Rubik-Italic-VariableFont_wght.ttf');
+}
+
 html {
   --color-primary: whitesmoke;
   --color-secondary: #c6aed2;
@@ -15,7 +20,7 @@ html {
 html,
 button,
 table {
-  font-family: sans-serif;
+  font-family: 'Rubik', sans-serif;
   font-size: 0.8rem;
 }
 
@@ -25,4 +30,10 @@ section {
 
 .font--color-secondary {
   color: var(--color-secondary);
+}
+
+@media screen and (min-width: 1024px) {
+  section {
+    margin: 1.5rem auto;
+  }
 }

@@ -55,9 +55,9 @@
 
                   <% if(anime.tags && anime.tags.length) { %>
                   <!-- tags -->
-                  <div class="anime-box-tags">
+                  <div class="anime-box__tags">
                     <% for(let i = 0, l = anime.tags.length; i < l; i++) { %>
-                    <span class="anime-box-tag--<%= anime.tags[i].replace(/\s+/g, '-') %>"><%= anime.tags[i] %></span>
+                    <span class="anime-box__tag--<%= anime.tags[i].replace(/\s+/g, '-') %>"><%= anime.tags[i] %></span>
                     <% } %>
                   </div>
                   <% } %>
@@ -65,8 +65,8 @@
 
                 <% if(typeof anime.rating == 'number') { %>
                 <!-- Note de l'animé (par moi) -->
-                <div class="anime-box-note">
-                  <span class="anime-box-note-rating"><%= anime.rating %> / 5</span>
+                <div class="anime-box__note">
+                  <span class="anime-box__note__rating"><%= anime.rating %> / 5</span>
                 </div>
                 <% } %>
               </div>

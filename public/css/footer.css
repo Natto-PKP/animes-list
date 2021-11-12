@@ -1,0 +1,17 @@
+footer {
+  padding: 0.8rem 0 0.5rem;
+  background-color: var(--color-tertiary);
+  text-align: center;
+}
+
+footer a {
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: var(--color-secondary);
+
+  transition: 0.2s;
+}
+
+footer a:hover {
+  color: var(--color-primary);
+}

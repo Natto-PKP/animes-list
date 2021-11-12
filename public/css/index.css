@@ -10,10 +10,6 @@
   transition: 0.1s ease-out;
 }
 
-/* .anime-box:hover {
-  transform: scale(1.1);
-} FOR PC */
-
 .anime-box__img {
   border-right: var(--color-tertiary) solid 2px;
 }
@@ -21,29 +17,197 @@
 /* Boite d'information de boite */
 .anime-box__infos {
   width: 100%;
+  overflow: hidden;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-grow: 1;
 
   padding: 0.5rem 0.25rem;
+  white-space: nowrap;
 }
 
 .anime-box__infos__primary {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
 .anime-box__infos__primary__ref {
+  max-width: 95%;
+  overflow: hidden;
+
   display: flex;
+  align-items: start;
+}
+
+.anime-box__infos__primary__ref__title,
+.anime-box__infos__primary__ref__title::before {
+  font-size: 1.1rem;
+  font-weight: bold;
 }
 
 .anime-box__infos__primary__ref__title {
-  flex-grow: 1;
   overflow: hidden;
   text-overflow: ellipsis;
+
+  padding: 0.1rem;
+}
+
+.anime-box__infos__primary__ref__title::before {
+  content: '#';
 }
 
 .anime-box__infos__primary__ref__statut {
+  margin-left: 0.1rem;
+  padding: 0.2rem 0.4rem 0.1rem;
+  background-color: var(--color-secondary);
+  border-radius: 4px;
+  font-size: 0.85rem;
 }
+
+/* Tags */
+.anime-box__tags {
+  display: flex;
+}
+
+.anime-box__tags span {
+  margin: 0 0.1rem;
+  padding: 0.15rem 0.3rem;
+  background-color: var(--color-secondary);
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+span.anime-box__tag--drame,
+span.anime-box__-tag--romance {
+  background-color: var(--color-red);
+}
+
+span.anime-box__tag--harem,
+span.anime-box__tag--ecchi {
+  background-color: var(--color-pink);
+}
+
+span.anime-box__tag--action,
+span.anime-box__tag--isekai,
+span.anime-box__tag--slice-of-life,
+span.anime-box__tag--sport {
+  background-color: var(--color-grey);
+}
+
+span.anime-box__tag--SF,
+span.anime-box__tag--fantasy {
+  background-color: var(--color-green);
+}
+
+span.anime-box__tag--politique,
+span.anime-box__tag--comique {
+  background-color: var(--color-yellow);
+}
+
+/* NOTE */
+.anime-box__note__rating {
+  padding-right: 6px;
+  border-right: var(--color-secondary) 2px solid;
+  font-size: 1.2rem;
+}
+
+@media screen and (min-width: 1024px) {
+  #animes {
+    margin: 0 auto;
+    width: 50rem;
+  }
+
+  .anime-box {
+    height: 5.6rem;
+  }
+
+  .anime-box:hover {
+    transform: scale(1.25);
+  }
+
+  .anime-box__infos {
+    padding: 0.6rem 0.8rem;
+  }
+
+  .anime-box__infos__primary {
+    justify-content: space-around;
+  }
+
+  .anime-box__infos__primary__ref {
+    align-items: center;
+  }
+
+  .anime-box__infos__primary__ref__title,
+  .anime-box__infos__primary__ref__title::before {
+    font-size: 1.6rem;
+  }
+
+  .anime-box__infos__primary__ref__statut {
+    margin-left: 0.6rem;
+    font-size: 1rem;
+  }
+
+  .anime-box__tags span {
+    font-size: 0.8rem;
+  }
+
+  .anime-box__note__rating {
+    font-size: 1.5rem;
+    padding-right: 0.8rem;
+  }
+}
+
+/*  
+.anime-box-ref::before {
+  padding: 0.2rem 0;
+  content: '|';
+  color: transparent;
+  font-size: 1.2rem;
+}
+ 
+.anime-box-title {
+  padding: 0.2rem 0.4rem;
+  text-transform: capitalize;
+  font-size: 1.2rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  transition: color 0.2s ease-out;
+}
+
+.anime-box-title::before {
+  content: '# ';
+  color: var(--color-tertiary-alpha);
+  font-size: 1.2rem;
+
+  transition: color 0.2s ease-out;
+}
+
+.anime-box-title:hover,
+.anime-box-title:hover::before {
+  position: absolute;
+
+  transition: color 0.2s ease-out;
+}
+
+.anime-box-title:hover {
+  padding-left: 25px;
+  overflow: visible;
+  background-color: var(--color-tertiary);
+  color: var(--color-primary);
+}
+
+.anime-box-title:hover::before {
+  left: 10px;
+  color: var(--color-secondary);
+}
+*/
