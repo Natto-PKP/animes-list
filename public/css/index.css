@@ -120,6 +120,13 @@ span.anime-box__tag--comique {
   font-size: 1.2rem;
 }
 
+@media screen and (min-width: 768px) {
+  #animes {
+    margin: 0 auto;
+    width: 40rem;
+  }
+}
+
 @media screen and (min-width: 1024px) {
   #animes {
     margin: 0 auto;

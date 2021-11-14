@@ -10,12 +10,12 @@ app.set('view engine', 'html')
 
 app.use(express.static('./public'))
 
-module.exports = req => {
-  console.log(req)
+module.exports = app
 
-  app.get('/', (_, res) => {
-    delete require.cache[require.resolve('./animes.json')]
+app.get('/', (_, res) => {
+  delete require.cache[require.resolve('./animes.json')]
 
-    res.render('index', { animes: require('./animes.json') })
-  })
-}
+  res.render('index', { animes: require('./animes.json') })
+})
+
+app.listen(8080)
