@@ -4,7 +4,19 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Liste d'animé</title>
+    <link rel="icon" href="images/page-icon.png" type="image/icon type" />
+
+    <!-- EMBED -->
+    <meta content="🥥 Nat' :: Animes list" property="og:title" />
+    <meta content="Ma propre liste de <%= animes.length %> animés !" property="og:description" />
+    <meta content="https://animes.natchy.xyz" property="og:url" />
+    <meta content="https://animes.natchy.xyz/images/embed-image.png" property="og:image" />
+    <meta content="#c6aed2" data-react-helmet="true" name="theme-color" />
+
+    <!-- SCRIPT -->
+    <script src="https://kit.fontawesome.com/cf8a7aebe3.js" crossorigin="anonymous"></script>
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/reset.css" />
@@ -21,8 +33,32 @@
 
     <main>
       <section>
-        <% if(animes.length) { %>
+        <!-- Filtre de la liste d'animé -->
+        <div id="animes-filter">
+          <label class="search-bar" for="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" id="search-bar" name="animes-search" placeholder="Rechercher par nom" />
+          </label>
 
+          <div id="tags__burger">
+            <span><i class="fas fa-tags"></i>Tags</span>
+            <i class="fas fa-angle-right"></i>
+          </div>
+
+          <div class="animes-filter__tags">
+            <% const tags = []; animes.forEach(anime => (anime.tags || []).forEach(tag => tags.some(_ => _.name == tag) ? tags.find(current => current.name == tag).number++ : tags.push({ name: tag, number: 1 }))) %>
+
+            <!-- Tags sélecteurs loop -->
+            <% for (let i = 0, l = tags.length; i < l; i++) { const tag = tags[i] %>
+            <a id="tag__<%= tag.name.replace(/\s+/g, '-') %>">
+              <span class="animes-filter__tags__tag__number"><%= tag.number %></span>
+              <%= tag.name %>
+            </a>
+            <% } %>
+          </div>
+        </div>
+
+        <!-- Liste d'animé -->
         <ol id="animes">
           <% for(let i = 0, l = animes.length; i < l; i++) { %>
           <li>
@@ -67,6 +103,12 @@
                 <!-- Note de l'animé (par moi) -->
                 <div class="anime-box__note">
                   <span class="anime-box__note__rating"><%= anime.rating %> / 5</span>
+                  <span class="anime-box__note__stars">
+                    <!-- Boucle qui compte le nombre d'étoile requise -->
+                    <% for (let i = 0; i < 5; i++) { %>
+                    <i class="<%= anime.rating > i ? (i + 1 - parseInt(anime.rating) > 0 ? 'fas fa-star-half-alt' : 'fas fa-star') : 'far fa-star' %>"></i>
+                    <% } %>
+                  </span>
                 </div>
                 <% } %>
               </div>
@@ -74,10 +116,6 @@
           </li>
           <% } %>
         </ol>
-
-        <% } else { %>
-        <div></div>
-        <% } %>
       </section>
     </main>
 

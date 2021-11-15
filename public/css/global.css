@@ -37,3 +37,9 @@ section {
     margin: 1.5rem auto;
   }
 }
+
+@media screen and (min-width: 1024px) {
+  section {
+    margin: 3rem auto;
+  }
+}

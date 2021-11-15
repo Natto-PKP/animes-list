@@ -1,5 +1,91 @@
+/* --- ANIME-FILTER --- */
+.search-bar,
+.search-bar input,
+.animes-filter__tags a,
+#tags__burger {
+  cursor: not-allowed;
+}
+
+#animes-filter {
+  display: flex;
+  justify-content: center;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 1.5rem auto 1.4rem;
+}
+
+.search-bar {
+  padding: 0.2rem;
+  box-shadow: -1px 1px 3px 1px rgba(0, 0, 0, 0.75);
+}
+
+.search-bar > i {
+  padding: 0 0.4rem;
+}
+
+.search-bar > input {
+  border: none;
+}
+
+.search-bar > input:focus {
+  outline: none;
+}
+
+.animes-filter__tags {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.2rem;
+}
+
+.animes-filter__tags a {
+  border: solid 1px var(--color-secondary);
+  padding: 0.3rem;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+}
+
+.animes-filter__tags__tag__number {
+  color: rgba(0, 0, 0, 0.75);
+}
+
+#tag__drame,
+#tag__romance {
+  border: solid 1px var(--color-red);
+}
+
+#tag__harem,
+#tag__ecchi {
+  border: solid 1px var(--color-pink);
+}
+
+#tag__action,
+#tag__isekai,
+#tag__slice-of-life,
+#tag__sport {
+  border: solid 1px var(--color-grey);
+}
+
+#tag__mecha,
+#tag__SF,
+#tag__fantasy {
+  border: solid 1px var(--color-green);
+}
+
+#tag__politique,
+#tag__comique {
+  border: solid 1px var(--color-yellow);
+}
+
+#tags__burger {
+  display: none;
+}
+
 /* --- ANIME-BOX --- */
 .anime-box {
+  position: relative;
   height: 3.6rem;
 
   display: flex;
@@ -87,7 +173,7 @@
 }
 
 span.anime-box__tag--drame,
-span.anime-box__-tag--romance {
+span.anime-box__tag--romance {
   background-color: var(--color-red);
 }
 
@@ -103,6 +189,7 @@ span.anime-box__tag--sport {
   background-color: var(--color-grey);
 }
 
+span.anime-box__tag--mecha,
 span.anime-box__tag--SF,
 span.anime-box__tag--fantasy {
   background-color: var(--color-green);
@@ -120,7 +207,35 @@ span.anime-box__tag--comique {
   font-size: 1.2rem;
 }
 
+.anime-box__note__stars {
+  display: none;
+}
+
 @media screen and (min-width: 768px) {
+  #animes-filter {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .animes-filter__tags a {
+    display: none;
+  }
+
+  #tags__burger {
+    display: flex;
+    width: 10rem;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0.5rem;
+    box-shadow: -1px 1px 3px 1px rgba(0, 0, 0, 0.75);
+  }
+
+  #tags__burger > span {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+  }
+
   #animes {
     margin: 0 auto;
     width: 40rem;
@@ -129,47 +244,75 @@ span.anime-box__tag--comique {
 
 @media screen and (min-width: 1024px) {
   #animes {
-    margin: 0 auto;
-    width: 50rem;
+    width: initial;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    gap: 1rem;
+    margin: 0 2rem;
   }
 
   .anime-box {
-    height: 5.6rem;
+    height: initial;
+    width: 20rem;
+    flex-direction: column;
+    margin: 0;
+    padding: 0.2rem 0.3rem;
   }
 
   .anime-box:hover {
-    transform: scale(1.25);
+    transform: scale(1.05);
+  }
+
+  .anime-box__img {
+    border-right: none;
+    border-bottom: var(--color-tertiary) solid 2px;
   }
 
   .anime-box__infos {
-    padding: 0.6rem 0.8rem;
+    width: calc(100% - 0.6rem);
+    flex-direction: column;
+    gap: 2.5rem;
   }
 
   .anime-box__infos__primary {
-    justify-content: space-around;
+    margin: 0;
+    justify-content: start;
+    gap: 0.5rem;
   }
 
   .anime-box__infos__primary__ref {
-    align-items: center;
-  }
-
-  .anime-box__infos__primary__ref__title,
-  .anime-box__infos__primary__ref__title::before {
-    font-size: 1.6rem;
+    max-width: 100%;
+    justify-content: space-between;
   }
 
   .anime-box__infos__primary__ref__statut {
-    margin-left: 0.6rem;
-    font-size: 1rem;
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+
+    margin: 0;
+    padding: 0.2rem 0.4rem;
+    font-size: 0.9rem;
   }
 
-  .anime-box__tags span {
+  .anime-box__tags {
+    flex-wrap: wrap;
+  }
+
+  .anime-box__tags > span {
     font-size: 0.8rem;
   }
 
   .anime-box__note__rating {
-    font-size: 1.5rem;
-    padding-right: 0.8rem;
+    display: none;
+  }
+
+  .anime-box__note__stars {
+    display: block;
+    font-size: 1.4rem;
+    color: var(--color-secondary);
   }
 }
 
