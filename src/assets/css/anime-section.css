@@ -10,24 +10,6 @@
   transition: 0.15s ease-out, 300ms opacity ease-out;
 }
 
-.anime-box--enter {
-  opacity: 0;
-}
-
-.anime-box--enter--active {
-  opacity: 1;
-  transition: opacity 300ms ease-in;
-}
-
-.anime-box--exit {
-  opacity: 1;
-}
-
-.anime-box--exit--active {
-  opacity: 0;
-  transition: opacity 300ms ease-in;
-}
-
 .anime-box__img {
   border-right: var(--color-tertiary) solid 2px;
 }
