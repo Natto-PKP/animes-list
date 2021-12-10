@@ -1,0 +1,63 @@
+#animes-filter {
+  display: flex;
+  justify-content: center;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 1.5rem auto 1.4rem;
+}
+
+.search-bar {
+  padding: 0.2rem;
+  box-shadow: -1px 1px 3px 1px rgba(0, 0, 0, 0.75);
+}
+
+.search-bar > i {
+  padding: 0 0.4rem;
+}
+
+.search-bar > input {
+  border: none;
+}
+
+.search-bar > input:focus {
+  outline: none;
+}
+
+#tags-burger,
+#tags-select {
+  display: none;
+}
+
+#tags-display {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+@media screen and (min-width: 768px) {
+  #animes-filter {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  #tags-display {
+    display: none;
+  }
+
+  #tags-burger {
+    display: flex;
+    width: 10rem;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0.5rem;
+    box-shadow: -1px 1px 3px 1px rgba(0, 0, 0, 0.75);
+  }
+
+  #tags-burger > span {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+  }
+}
