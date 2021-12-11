@@ -81,59 +81,61 @@
   padding: 0.4rem 0.6rem;
   border-radius: 4px;
   background-color: var(--color-secondary);
+  border: 2px solid transparent;
   text-transform: uppercase;
   font-size: 0.8rem;
+  font-weight: bold;
+  transition: 200ms ease-out;
 }
 
 .anime-tag--tiny {
   padding: 0.2rem 0.3rem;
   font-size: 0.7rem;
-  font-weight: bold;
 }
 
 .anime-tag--red {
   background-color: var(--color-red);
 }
 
-.anime-box--red--selected {
+.anime-tag--red--selected {
   background-color: transparent;
-  border: 2px solid var(--color-red);
+  border-color: var(--color-red);
 }
 
 .anime-tag--pink {
   background-color: var(--color-pink);
 }
 
-.anime-box--pink--selected {
+.anime-tag--pink--selected {
   background-color: transparent;
-  border: 2px solid var(--color-pink);
+  border-color: var(--color-pink);
 }
 
 .anime-tag--grey {
   background-color: var(--color-grey);
 }
 
-.anime-box--grey--selected {
+.anime-tag--grey--selected {
   background-color: transparent;
-  border: 2px solid var(--color-grey);
+  border-color: var(--color-grey);
 }
 
 .anime-tag--green {
   background-color: var(--color-green);
 }
 
-.anime-box--green--selected {
+.anime-tag--green--selected {
   background-color: transparent;
-  border: 2px solid var(--color-green);
+  border-color: var(--color-green);
 }
 
 .anime-tag--yellow {
   background-color: var(--color-yellow);
 }
 
-.anime-box--yellow--selected {
+.anime-tag--yellow--selected {
   background-color: transparent;
-  border: 2px solid var(--color-yellow);
+  border-color: var(--color-yellow);
 }
 
 /* NOTE */

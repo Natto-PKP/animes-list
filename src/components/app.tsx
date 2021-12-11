@@ -10,7 +10,6 @@ import { AnimeSectionComponent } from './animes-section';
 /* CSS */
 import '../assets/css/global.css';
 import '../assets/css/header.css';
-import '../assets/css/footer.css';
 
 export const App = (): ReactElement => {
   const animes = animesJSON as AnimeBase[];
@@ -27,12 +26,6 @@ export const App = (): ReactElement => {
       <main>
         <AnimeSectionComponent animes={animes} />
       </main>
-
-      <footer>
-        <a target="_blank" href="https://discord.gg/cMgGaDpuay" rel="noreferrer">
-          Vers mon serveur Discord
-        </a>
-      </footer>
     </>
   );
 };

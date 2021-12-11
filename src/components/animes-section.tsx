@@ -30,7 +30,7 @@ export const AnimeSectionComponent: FC<{ animes: AnimeBase[] }> = ({ animes }): 
 
   return (
     <>
-      <AnimeSearchComponent animes={animes} list={animes_list} setList={setAnimesList} />
+      <AnimeSearchComponent animes={animes} setAnimesList={setAnimesList} />
 
       <TransitionGroup id="animes" component="section">
         {animes_list.map((anime, i) => {

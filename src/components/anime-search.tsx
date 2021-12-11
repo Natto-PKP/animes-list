@@ -1,26 +1,23 @@
-import { ReactElement, FC, useState, useEffect, ChangeEvent, MouseEventHandler } from 'react';
-
-/* Components */
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { ReactElement, FC, useState, useEffect, ChangeEvent, MouseEvent } from 'react';
 
 /* Services */
 import { tags_colors as colors } from '../services/colors';
-import { fade_in_out } from '../services/transitions';
 import { getCurrentTags } from '../services/tags';
 
 /* Typings */
 import { AnimeBase, AnimeTag } from '../typings';
-type Props = FC<{ animes: AnimeBase[]; list: AnimeBase[]; setList: React.Dispatch<React.SetStateAction<AnimeBase[]>> }>;
+type Props = FC<{ animes: AnimeBase[]; setAnimesList: React.Dispatch<React.SetStateAction<AnimeBase[]>> }>;
 
 /**
  * Section de recherche de la liste d'animé
  * @param anime
  * @returns
  */
-export const AnimeSearchComponent: Props = ({ animes, list, setList }): ReactElement => {
+export const AnimeSearchComponent: Props = ({ animes, setAnimesList }): ReactElement => {
   // States
   const [search, setSearch] = useState('');
   const [selected_tags, setSelectedTags] = useState<AnimeTag[]>([]);
+  const [display_tags_menu, setDisplayTagsMenu] = useState(false);
   const tags = getCurrentTags(animes);
 
   /**
@@ -30,8 +27,8 @@ export const AnimeSearchComponent: Props = ({ animes, list, setList }): ReactEle
     const current_list_after_search_filter = search.length ? animes.filter(anime => anime.name.toLowerCase().includes(search)) : animes;
     const current_list_after_tags_filter = current_list_after_search_filter.filter(anime => selected_tags.every(tag => anime.tags?.includes(tag)));
 
-    setList(current_list_after_tags_filter);
-  }, [search, animes, selected_tags, setList]);
+    setAnimesList(current_list_after_tags_filter);
+  }, [search, animes, selected_tags, setAnimesList]);
 
   /**
    * update search state
@@ -44,28 +41,16 @@ export const AnimeSearchComponent: Props = ({ animes, list, setList }): ReactEle
   };
 
   /**
-   * add a element in selected_tags state
+   * Update tags state
    * @param event
+   * @param value
    */
-  const addSelectedTags = (event: ChangeEvent<HTMLSelectElement>) => {
-    const value = event.target.value as AnimeTag;
-    if (!selected_tags.includes(value)) setSelectedTags(state => [...state, value]);
-  };
-
-  /**
-   * remove a element in selected_tags state
-   * @param event
-   */
-  const removeSelectedTags: MouseEventHandler = event => {
+  const handleChangeTag = (event: MouseEvent<HTMLButtonElement | HTMLOptionElement, MouseEvent | globalThis.MouseEvent>, tag: AnimeTag) => {
     event.preventDefault();
 
-    const value = event.currentTarget.id as AnimeTag;
-    if (selected_tags.includes(value)) {
-      setSelectedTags(state => {
-        state.slice(state.indexOf(value), 1);
-        return state;
-      });
-    }
+    if (selected_tags.includes(tag)) {
+      setSelectedTags(state => state.filter(v => v.toLowerCase() !== tag.toLowerCase()));
+    } else setSelectedTags(state => [...state, tag]);
   };
 
   /**
@@ -73,35 +58,6 @@ export const AnimeSearchComponent: Props = ({ animes, list, setList }): ReactEle
    */
   return (
     <section>
-      {selected_tags.length ? (
-        <TransitionGroup id="animes-selected-tags">
-          {selected_tags.map((tag, i) => {
-            const value = tag.replace(/\s+/g, '-');
-
-            return (
-              <CSSTransition key={i} {...fade_in_out}>
-                <button id={value} className={'anime-tag anime-tag--' + colors[value]} onClick={removeSelectedTags}>
-                  <span>{tag}</span>
-                  <i className="fas fa-window-close"></i>
-                </button>
-              </CSSTransition>
-            );
-          })}
-
-          {selected_tags.length > 2 ? (
-            <CSSTransition {...fade_in_out}>
-              <button id="all-tags" onClick={removeSelectedTags}>
-                <i className="fas fa-window-close"></i>
-              </button>
-            </CSSTransition>
-          ) : (
-            <></>
-          )}
-        </TransitionGroup>
-      ) : (
-        <></>
-      )}
-
       <form id="animes-filter">
         <label className="search-bar" htmlFor="search-bar">
           <i className="fas fa-search"></i>
@@ -110,35 +66,52 @@ export const AnimeSearchComponent: Props = ({ animes, list, setList }): ReactEle
 
         {tags.length ? (
           <>
-            <div id="tags-burger">
+            <div id="tags-burger" onMouseEnter={() => setDisplayTagsMenu(state => true)} onMouseLeave={() => setDisplayTagsMenu(state => false)}>
               <label htmlFor="tags-select">
                 <span>
-                  <i className="fas fa-tags"></i>Tags
+                  <i className="fas fa-tags"></i>
+                  {selected_tags.length ? `${selected_tags.length} filtres` : 'Tags'}
                 </span>
+
                 <i className="fas fa-angle-right"></i>
               </label>
 
-              <select name="tags-select" id="tags-select" multiple onChange={addSelectedTags}>
-                {tags.map((tag, i) => {
-                  const value = tag.replace(/\s+/g, '-');
+              {display_tags_menu ? (
+                <select name="tags-select" multiple>
+                  {tags.map((tag, i) => {
+                    const value = tag.replace(/\s+/g, '-');
+                    const color = colors[value];
 
-                  return (
-                    <option key={i} className={`anime-tag anime-tag--${colors[value]}`} value={value}>
-                      {tag}
-                    </option>
-                  );
-                })}
-              </select>
+                    return (
+                      <option
+                        key={i}
+                        className={selected_tags.includes(tag) ? 'anime-tag--' + color : ''}
+                        value={value}
+                        onClick={event => handleChangeTag(event, tag)}
+                      >
+                        {tag}
+                      </option>
+                    );
+                  })}
+                </select>
+              ) : (
+                <></>
+              )}
             </div>
 
             <div id="tags-display">
               {tags.map((tag, i) => {
                 const value = tag.replace(/\s+/g, '-');
+                const color = colors[value];
 
                 return (
-                  <span key={i} className={`anime-tag anime-tag--${colors[value]} ${selected_tags.includes(tag) ? 'anime-tag--selected' : ''}`}>
+                  <button
+                    key={i}
+                    onClick={event => handleChangeTag(event, tag)}
+                    className={`anime-tag anime-tag--${color} ${selected_tags.includes(tag) ? `anime-tag--${color}--selected` : ''}`}
+                  >
                     {tag}
-                  </span>
+                  </button>
                 );
               })}
             </div>
