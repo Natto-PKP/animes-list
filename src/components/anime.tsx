@@ -15,7 +15,7 @@ import { AnimeStatutComponent } from './anime-statut';
 export const AnimeComponent: FC<{ anime: AnimeBase }> = ({ anime }): ReactElement => {
   return (
     <article className="anime-box">
-      <img className="anime-box__img" src={`./images/${anime.image}`} alt={anime.name} />
+      <img className="anime-box__img" src={`/images/${anime.image}`} alt={anime.name} />
 
       <div className="anime-box__infos">
         <div className="anime-box__infos__primary">
